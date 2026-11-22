@@ -1,0 +1,125 @@
+.ms-field {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+.ms-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.ms { position: relative; min-width: 0; }
+.ms summary {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  overflow: hidden;
+  padding: 7px 28px 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
+}
+.ms summary::-webkit-details-marker { display: none; }
+.ms summary::after {
+  position: absolute;
+  right: 10px;
+  color: var(--muted);
+  content: '▾';
+}
+.ms summary:hover { border-color: var(--accent); }
+.ms summary.is-disabled { opacity: .55; cursor: not-allowed; }
+.ms[open] summary { border-color: var(--accent); }
+.ms-pop {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  z-index: 70;
+  width: max(280px, 100%);
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: var(--shadow-lg);
+}
+.ms.expanded .ms-pop { width: min(520px, 92vw); }
+.ms-pop-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.ms-pop-head button {
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 10.5px;
+}
+.ms-pop-head button:hover { border-color: var(--accent); }
+.ms-pop input[type="search"] {
+  width: 100%;
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 12px;
+}
+.ms-actions { display: flex; gap: 6px; margin-top: 6px; }
+.ms-actions button {
+  flex: 1;
+  padding: 5px 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--soft);
+  color: var(--ink);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+.ms-actions button:hover { border-color: var(--accent); }
+.ms-list {
+  max-height: 280px;
+  margin-top: 6px;
+  overflow: auto;
+}
+.ms.expanded .ms-list { max-height: 460px; }
+.ms .ms-list label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 2px;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+.ms .ms-list label:hover { background: var(--soft); }
+.ms .ms-list input {
+  width: auto;
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: var(--accent);
+}
+.ms .ms-list span { flex: 1; min-width: 0; }
+.ms-list small { color: var(--muted); font-size: 10px; }
+.ms-empty { margin: 8px 2px 3px; color: var(--muted); font-size: 11px; }
+
+@media (max-width: 480px) {
+  .ms-pop { width: min(280px, 86vw); }
+  .ms.expanded .ms-pop { width: 88vw; }
+}
