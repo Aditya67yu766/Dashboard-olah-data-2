@@ -15,7 +15,10 @@ let token: string | null = null;
 function getToken(): string | null {
   if (token) return token;
   try {
-    token = localStorage.getItem(TOKEN_KEY);
+    // Bersihkan token lama dari localStorage (perilaku lama: ingat 7 hari).
+    // Token sekarang hanya disimpan di sessionStorage per tab.
+    if (localStorage.getItem(TOKEN_KEY)) localStorage.removeItem(TOKEN_KEY);
+    token = sessionStorage.getItem(TOKEN_KEY);
   } catch {
     token = null;
   }
@@ -25,8 +28,10 @@ function getToken(): string | null {
 function setToken(next: string | null) {
   token = next;
   try {
-    if (next) localStorage.setItem(TOKEN_KEY, next);
-    else localStorage.removeItem(TOKEN_KEY);
+    if (next) sessionStorage.setItem(TOKEN_KEY, next);
+    else sessionStorage.removeItem(TOKEN_KEY);
+    // Pastikan token tidak pernah tertinggal di localStorage.
+    localStorage.removeItem(TOKEN_KEY);
   } catch {
     // Penyimpanan browser tidak tersedia; sesi hanya berlaku selama tab terbuka.
   }

@@ -189,7 +189,7 @@ export async function exportMapPng(options: {
 
   context.fillStyle = color('muted', '#5e6858');
   context.font = '400 15px "DM Sans", "Segoe UI", Arial, sans-serif';
-  context.fillText('Sumber: LAVIDA · Balai Veteriner Lampung · Batas wilayah: GADM 3.6 (disederhanakan)', 48, height - 12);
+  context.fillText('Sumber: Pantau Penyakit · Balai Veteriner Lampung · Batas wilayah: GADM 3.6 (disederhanakan)', 48, height - 12);
 
   const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'));
   if (!blob) throw new Error('Gambar peta tidak dapat dibuat.');

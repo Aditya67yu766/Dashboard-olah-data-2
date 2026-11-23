@@ -113,7 +113,9 @@ function groupRows(key: ViewKey, rows: ChartRow[]): GroupedRow[] {
 }
 
 function chartHeightFor(rowCount: number, horizontal: boolean): number {
-  if (horizontal) return Math.max(360, Math.min(1600, rowCount * 42));
+  // Grafik horizontal butuh ruang per baris agar label kategori tidak bertumpuk.
+  // Tinggi mengikuti jumlah baris (maksimum 12000px) sehingga teks tetap terbaca.
+  if (horizontal) return Math.max(360, Math.min(12000, rowCount * 36));
   return Math.max(390, Math.min(720, rowCount * 26));
 }
 
@@ -969,7 +971,12 @@ export default function ChartsPage({ theme }: ChartsPageProps) {
     selectedYears.size ? `Tahun ${[...selectedYears].sort().join(', ')}` : 'Semua tahun',
     selectedProvinces.size ? [...selectedProvinces].sort((a, b) => a.localeCompare(b, 'id')).join(', ') : 'Semua provinsi'
   ];
-  if (selectedDiseases.size) subtitleParts.push(`Penyakit ${[...selectedDiseases].sort((a, b) => a.localeCompare(b, 'id')).join(', ')}`);
+  if (selectedDiseases.size) {
+    const names = [...selectedDiseases].sort((a, b) => a.localeCompare(b, 'id'));
+    const shown = names.slice(0, 2).join(', ');
+    const rest = names.length - 2;
+    subtitleParts.push(`Penyakit ${shown}${rest > 0 ? ` +${rest} lainnya` : ''}`);
+  }
   if (tab === 'table') subtitleParts.push(`${searchedRows.length} baris`);
 
   return (

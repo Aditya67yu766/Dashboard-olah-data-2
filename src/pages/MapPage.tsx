@@ -963,7 +963,7 @@ export default function MapPage({ theme }: { theme: 'light' | 'dark' }) {
         svg,
         viewBox,
         title: 'Peta Wilayah Terdampak – Sumbagsel',
-        subtitle: `LAVIDA · Balai Veteriner Lampung · Tahun ${yearsLabel} · ${unitLabel}${scopeLabel ? ` · ${scopeLabel}` : ''}${diseases.size ? ` · Penyakit: ${diseaseLabel}` : ''}`,
+        subtitle: `Pantau Penyakit · Balai Veteriner Lampung · Tahun ${yearsLabel} · ${unitLabel}${scopeLabel ? ` · ${scopeLabel}` : ''}${diseases.size ? ` · Penyakit: ${diseaseLabel}` : ''}`,
         legend,
         filename: `peta_wilayah_terdampak_${fileSlug(yearsLabel)}.png`
       });

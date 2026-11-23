@@ -70,11 +70,9 @@ function App() {
       if (auth.error) {
         setFlash({ text: `Sesi admin tidak dapat diperiksa: ${auth.error}`, type: 'error' });
       } else if (auth.session) {
+        // Sesi dipulihkan, tetapi halaman awal tetap beranda publik.
         setSession(auth.session);
         setIsAdmin(auth.admin);
-        setPage('admin');
-        setFlash({ text: 'Berhasil masuk.', type: 'success' });
-        await Promise.all([loadSummary(), loadAdminRecords(), loadAdminImports()]);
       }
       if (!cancelled) await loadSummary();
     }
@@ -357,11 +355,6 @@ function App() {
   }
 
   function navigate(nextPage: Page) {
-    if (isAdmin && (nextPage === 'charts' || nextPage === 'map')) {
-      setPage('admin');
-      setFlash({ text: 'Keluar dari akun admin terlebih dahulu untuk melihat dashboard.', type: 'info' });
-      return;
-    }
     if (nextPage === 'admin' && !isAdmin) {
       setPage('login');
       setFlash(null);
@@ -386,9 +379,9 @@ function App() {
   return (
     <div className={`app-shell${page === 'charts' || page === 'map' ? ' dash-mode' : ''}`}>
       <header className="site-header">
-        <button className="brand" onClick={() => navigate('home')} aria-label="LAVIDA beranda">
+        <button className="brand" onClick={() => navigate('home')} aria-label="Pantau Penyakit beranda">
           <img className="brand-logo" src="/logo-bv-lampung.png" alt="" />
-          <span><strong>LAVIDA</strong><small>Balai Veterininer Lampung</small></span>
+          <span><strong>Pantau Penyakit</strong><small>Balai Veterininer Lampung</small></span>
         </button>
         <nav className="main-nav" aria-label="Navigasi utama">
           {navItems.map(([target, label]) => (
@@ -425,7 +418,6 @@ function App() {
             configured={configured}
             flash={flashText}
             flashType={flashType}
-            onPage={(target) => navigate(target)}
             onLogout={() => void handleSignOut()}
             onManage={() => navigate('admin')}
           />
@@ -488,7 +480,7 @@ function App() {
       {page === 'map' ? <MapPage theme={theme} /> : null}
 
       <footer className="site-footer">
-        <span>LAVIDA · Balai Veterininer Lampung</span>
+        <span>Pantau Penyakit · Balai Veterininer Lampung</span>
         <span>Data IV Lab · {new Date().getFullYear()}</span>
       </footer>
 

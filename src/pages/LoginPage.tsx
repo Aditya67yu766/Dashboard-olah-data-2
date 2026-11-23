@@ -38,7 +38,7 @@ export default function LoginPage({ configured: isConfigured, busy, flash, flash
         </form>
         <div className="auth-foot">Akses admin dikelola melalui backend IV Lab. Login perlu diulang setelah halaman dimuat ulang.</div>
       </section>
-      <div className="auth-side"><span className="eyebrow eyebrow-light">LAVIDA · Lampung Veterinary Information & Data Analytics Dashboard</span><p>Pencatatan sampel dan hasil uji laboratorium veteriner.</p></div>
+      <div className="auth-side"><span className="eyebrow eyebrow-light">Pantau Penyakit · Sistem Informasi & Pemantauan Penyakit Hewan</span><p>Pemantauan penyakit hewan dan hasil uji laboratorium veteriner.</p></div>
     </main>
   );
 }

@@ -91,11 +91,11 @@ export default function HomePage({ summary, summaryError, configured, isAdmin, f
       <section className="hero">
         <div className="hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">LAVIDA · Lampung Veterinary Information & Data Analytics Dashboard</span>
+            <span className="eyebrow">Pantau Penyakit · Balai Veteriner Lampung</span>
             <h1>Data pengujian <em>IV Lab</em></h1>
             <p>
-              Ringkasan pengujian laboratorium veteriner. Data agregat tersaji publik; detail sampel
-              dikelola melalui panel admin.
+              Pantau sebaran penyakit hewan melalui ringkasan hasil uji laboratorium veteriner.
+              Data agregat tersaji publik; detail sampel dikelola melalui panel admin.
             </p>
             <div className="hero-actions">
               <button className="button button-cream" onClick={() => onPage('charts')}>Lihat ringkasan data</button>
